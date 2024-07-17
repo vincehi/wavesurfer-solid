@@ -1,6 +1,6 @@
 {
   "name": "wavesurfer-solidjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Solidjs component and hook for wavesurfer.js",
   "license": "MIT",
   "contributors": [
@@ -9,6 +9,11 @@
       "url": "https://github.com/vincehi"
     }
   ],
+  "homepage": "https://github.com/vincehi/wavesurfer-solidjs",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:vincehi/wavesurfer-solidjs.git"
+  },
   "keywords": [
     "wavesurfer",
     "audio",
