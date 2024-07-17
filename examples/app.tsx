@@ -1,5 +1,5 @@
 import WavesurferPlayer, { createWavesurfer } from "@/index.jsx";
-import { createEffect, createSignal } from "solid-js";
+import { createSignal } from "solid-js";
 import type { JSX } from "solid-js";
 import { render } from "solid-js/web";
 import type WaveSurfer from "wavesurfer.js";

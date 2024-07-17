@@ -30,8 +30,8 @@ As a component:
 import WavesurferPlayer from "wavesurfer-solidjs";
 
 const App = () => {
-  const [wavesurfer, setWavesurfer] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [wavesurfer, setWavesurfer] = createSignal(null);
+  const [isPlaying, setIsPlaying] = createSignal(false);
 
   const onReady = (ws) => {
     setWavesurfer(ws);
@@ -39,7 +39,7 @@ const App = () => {
   };
 
   const onPlayPause = () => {
-    wavesurfer && wavesurfer.playPause();
+    wavesurfer()?.playPause();
   };
 
   return (
@@ -53,7 +53,7 @@ const App = () => {
         onPause={() => setIsPlaying(false)}
       />
 
-      <button onClick={onPlayPause}>{isPlaying ? "Pause" : "Play"}</button>
+      <button onClick={onPlayPause}>{isPlaying() ? "Pause" : "Play"}</button>
     </>
   );
 };
