@@ -1,6 +1,6 @@
 {
   "name": "wavesurfer-solidjs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Solidjs component and hook for wavesurfer.js",
   "license": "MIT",
   "contributors": [
@@ -26,9 +26,7 @@
   "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "files": [
-    "./dist/index.cjs",
-    "./dist/index.js",
-    "./dist/index.d.ts"
+    "./dist/*"
   ],
   "scripts": {
     "build": "vite build",
@@ -40,7 +38,8 @@
     "test:coverage": "vitest run --coverage",
     "test:run": "vitest run",
     "test:watch": "vitest",
-    "prepare": "husky"
+    "prepare": "husky",
+    "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
     "solid-js": "^1.8.18",
