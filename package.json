@@ -1,6 +1,6 @@
 {
   "name": "wavesurfer-solidjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Solidjs component and hook for wavesurfer.js",
   "license": "MIT",
   "contributors": [
@@ -26,7 +26,9 @@
   "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "files": [
-    "dist/*"
+    "./dist/index.cjs",
+    "./dist/index.js",
+    "./dist/index.d.ts"
   ],
   "scripts": {
     "build": "vite build",
