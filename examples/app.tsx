@@ -1,19 +1,16 @@
-import { WavesurferPlayer, createWavesurfer } from "@/index-copy.jsx";
+import WavesurferPlayer, { createWavesurfer } from "@/index.jsx";
 import { createEffect, createSignal } from "solid-js";
 import type { JSX } from "solid-js";
 import { render } from "solid-js/web";
 import type WaveSurfer from "wavesurfer.js";
 
-// import WavesurferPlayer from "../dist/index.js";
-
-const audioUrls = ["/examples/audio.wav", "/examples/stereo.mp3"];
+const audioUrls = ["/audio.wav", "/stereo.mp3"];
 
 const randomColor = () =>
   `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
 
 const App = (): JSX.Element => {
   const [urlIndex, setUrlIndex] = createSignal(0);
-  const [waveColor, setWaveColor] = createSignal(randomColor());
   const [wavesurfer, setWavesurfer] = createSignal<WaveSurfer | null>(null);
   const [isPlaying, setIsPlaying] = createSignal(false);
 
@@ -32,32 +29,12 @@ const App = (): JSX.Element => {
       }
       return playing;
     });
+    useWaveSurfer()?.playPause();
   };
 
-  let containerRef;
+  let containerRef: HTMLDivElement;
 
-  // const {
-  //   wavesurfer: useWaveSurfer,
-  //   isReady: useIsReady,
-  //   isPlaying: useIsPlaying,
-  //   currentTime: useCurrentTime,
-  // } = createWavesurfer({
-  //   get container() {
-  //     return containerRef!;
-  //   },
-  //   get url() {
-  //     return audioUrls[urlIndex()];
-  //   },
-  //   waveColor: "purple",
-  //   height: 100,
-  // });
-
-  const {
-    wavesurfer: useWaveSurfer,
-    isReady: useIsReady,
-    isPlaying: useIsPlaying,
-    currentTime: useCurrentTime,
-  } = createWavesurfer({
+  const { wavesurfer: useWaveSurfer } = createWavesurfer({
     getContainer: () => containerRef,
     get url() {
       return audioUrls[urlIndex()];
@@ -70,23 +47,13 @@ const App = (): JSX.Element => {
   const onColorChange = () => {
     wavesurfer()?.setOptions({ waveColor: randomColor() });
     useWaveSurfer()?.setOptions({ waveColor: randomColor() });
-    console.log(wavesurfer());
-    console.log(useWaveSurfer());
-    // useWaveSurfer()?.setOptions({ waveColor: randomColor() });
   };
-
-  createEffect(() => {
-    // console.log(useCurrentTime);
-    // console.log(useIsPlaying);
-    // console.log(useIsReady);
-    console.log(useWaveSurfer());
-  });
 
   return (
     <>
       <WavesurferPlayer
         height={100}
-        waveColor={waveColor()}
+        waveColor={randomColor()}
         url={audioUrls[urlIndex()]}
         onReady={(ws) => {
           return setWavesurfer(ws);

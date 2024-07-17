@@ -62,29 +62,19 @@ const App = () => {
 Alternatively, as a hook:
 
 ```js
-import { useWavesurfer } from "wavesurfer-solidjs";
+import { createWavesurfer } from "wavesurfer-solidjs";
 
 const App = () => {
-  const containerRef = useRef(null);
+  let containerRef;
 
-  const { wavesurfer, isReady, isPlaying, currentTime } = useWavesurfer({
-    container: containerRef,
+  const { wavesurfer, isReady, isPlaying, currentTime } = createWavesurfer({
+    getContainer: () => containerRef,
     url: "/my-server/audio.ogg",
     waveColor: "purple",
     height: 100,
   });
 
-  const onPlayPause = () => {
-    wavesurfer && wavesurfer.playPause();
-  };
-
-  return (
-    <>
-      <div ref={containerRef} />
-
-      <button onClick={onPlayPause}>{isPlaying ? "Pause" : "Play"}</button>
-    </>
-  );
+  return <div ref={(el) => (containerRef = el)} />;
 };
 ```
 
