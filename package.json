@@ -1,6 +1,6 @@
 {
   "name": "wavesurfer-solidjs",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Solidjs component and hook for wavesurfer.js",
   "license": "MIT",
   "contributors": [

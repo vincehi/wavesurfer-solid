@@ -24,14 +24,14 @@ npm install wavesurfer.js wavesurfer-solidjs
 
 ## Usage
 
-As a component:
+### As a component:
 
 ```js
 import WavesurferPlayer from "wavesurfer-solidjs";
 
 const App = () => {
-  const [wavesurfer, setWavesurfer] = createSignal(null);
-  const [isPlaying, setIsPlaying] = createSignal(false);
+  const [getWavesurfer, setWavesurfer] = createSignal(null);
+  const [getIsPlaying, setIsPlaying] = createSignal(false);
 
   const onReady = (ws) => {
     setWavesurfer(ws);
@@ -39,7 +39,7 @@ const App = () => {
   };
 
   const onPlayPause = () => {
-    wavesurfer()?.playPause();
+    getWavesurfer()?.playPause();
   };
 
   return (
@@ -53,23 +53,24 @@ const App = () => {
         onPause={() => setIsPlaying(false)}
       />
 
-      <button onClick={onPlayPause}>{isPlaying() ? "Pause" : "Play"}</button>
+      <button onClick={onPlayPause}>{getIsPlaying() ? "Pause" : "Play"}</button>
     </>
   );
 };
 ```
 
-Alternatively, as a hook:
+### Alternatively, as a hook:
 
 ```js
 import { createWavesurfer } from "wavesurfer-solidjs";
 
 const App = () => {
   let containerRef;
+  const [getUrl, setUrl] = createSignal(null);
 
   const { wavesurfer, isReady, isPlaying, currentTime } = createWavesurfer({
     getContainer: () => containerRef,
-    url: "/my-server/audio.ogg",
+    url: getUrl(), // get url() { return getUrl() } // For reactivity
     waveColor: "purple",
     height: 100,
   });
